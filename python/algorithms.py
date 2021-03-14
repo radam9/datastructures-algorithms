@@ -1,7 +1,8 @@
 import random
 
-limit = 10000000
-array = [r for r in range(limit)]
+limit = 1000000
+ordered_array = [r for r in range(limit)]
+unordered_array = random.sample(range(limit), limit)
 search_value = random.randint(0, limit)
 
 
@@ -28,3 +29,19 @@ def binarysearch(array, search_value):
             lower_bound = midpoint + 1
 
     return None
+
+
+def bubblesort(array):
+    last_index = len(array) - 1
+
+    sorting = True
+
+    while sorting:
+        sorting = False
+        for index in range(last_index):
+            if array[index] > array[index + 1]:
+                array[index], array[index + 1] = array[index + 1], array[index]
+                sorting = True
+        last_index -= 1
+
+    return array
