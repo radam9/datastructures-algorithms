@@ -60,3 +60,20 @@ def selection_sort(array):
             array[index], array[lowest_index] = array[lowest_index], array[index]
 
     return array
+
+
+def insertion_sort(array):
+    array_length = len(array)
+    for index in range(1, array_length):
+        carry_value = array[index]
+        position = index - 1
+
+        while position >= 0:
+            if carry_value < array[position]:
+                array[position + 1] = array[position]
+                position -= 1
+            else:
+                break
+        array[position + 1] = carry_value
+
+    return array
