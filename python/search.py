@@ -1,4 +1,5 @@
 import random
+from sort import _partition
 
 limit = 1000000
 ordered_array = [r for r in range(limit)]
@@ -28,3 +29,18 @@ def binary_search(array, search_value):
             lower_bound = midpoint + 1
 
     return None
+
+
+def quick_select(array, value, right=None, left=0):
+    if not right:
+        right = len(array) - 1
+
+    pivot = _partition(array, right, left)
+
+    if value == pivot:
+        result = array[pivot]
+    elif value < pivot:
+        result = quick_select(array, value, right=pivot - 1, left=left)
+    elif value > pivot:
+        result = quick_select(array, value, right, left=pivot + 1)
+    return result
