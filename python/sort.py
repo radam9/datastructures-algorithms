@@ -49,27 +49,27 @@ def insertion_sort(array):
         array[position + 1] = carry_value
 
 
-def _partition(array, right_pointer, left_pointer):
-    pivot = array[right_pointer]
-    index = left_pointer - 1
+def _partition(array, right, left):
+    pivot = array[right]
+    index = left - 1
 
-    for pointer in range(left_pointer, right_pointer):
+    for pointer in range(left, right):
         if array[pointer] < pivot:
             index += 1
             array[index], array[pointer] = array[pointer], array[index]
-    array[index + 1], array[right_pointer] = array[right_pointer], array[index + 1]
+    array[index + 1], array[right] = array[right], array[index + 1]
     return index + 1
 
 
-def quicksort(array, right_pointer=None, left_pointer=0):
+def quicksort(array, right=None, left=0):
     """Sort array in place using QuickSort"""
-    if not right_pointer:
-        right_pointer = len(array) - 1
+    if not right:
+        right = len(array) - 1
 
-    if right_pointer <= left_pointer:
+    if right <= left:
         return
 
-    pivot_index = _partition(array, right_pointer, left_pointer)
+    pivot = _partition(array, right, left)
 
-    quicksort(array, pivot_index - 1, left_pointer)
-    quicksort(array, right_pointer, pivot_index + 1)
+    quicksort(array, pivot - 1, left)
+    quicksort(array, right, pivot + 1)
