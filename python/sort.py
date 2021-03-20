@@ -1,6 +1,6 @@
 import random
 
-limit = 1000000
+limit = 100000
 unordered_array = random.sample(range(limit), limit)
 
 
@@ -61,15 +61,16 @@ def _partition(array, right, left):
     return index + 1
 
 
-def quicksort(array, right=None, left=0):
-    """Sort array in place using QuickSort"""
-    if not right:
-        right = len(array) - 1
-
+def _quicksort_recursive(array, right, left):
     if right <= left:
         return
 
     pivot = _partition(array, right, left)
 
-    quicksort(array, pivot - 1, left)
-    quicksort(array, right, pivot + 1)
+    _quicksort_recursive(array, pivot - 1, left)
+    _quicksort_recursive(array, right, pivot + 1)
+
+
+def quicksort(array):
+    """Sort array in place using QuickSort"""
+    _quicksort_recursive(array, len(array) - 1, 0)
